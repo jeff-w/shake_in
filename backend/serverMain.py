@@ -1,5 +1,3 @@
-import resume
-
 from flask import Flask
 from flask import request
 from pymongo import MongoClient
