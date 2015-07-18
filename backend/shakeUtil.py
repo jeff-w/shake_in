@@ -4,22 +4,22 @@ import math
 
 shakeActives = []
 
-def addShaker(self, userId, gpsLoc):
+def addShaker(userId, gpsLoc):
 	try:
 		x = 0
 		while (x < len(shakeActives):
 			if(userId == shakeActives.userId):
 				shakeActives[x] = Shaker(userId, gpsLoc)
-				return makeResponse("ADD_SHAKER", "SUCCESS", "User is already shaking, will remain active for 2 more mins", userid))
+				return makeResponse("ADD_SHAKER", "SUCCESS", "User is already shaking, will remain active for 2 more mins", userId))
 			if(shakeActives[x].isToOld()):
 				shakeActives.pop(x)
 				x -= 1
 			x += 1
 			
 		shakeActices.append(Shaker(userId, gpsLoc))
-		return makeResponse("ADD_SHAKER", "SUCCESS", "User is now shaking, will remain active for 2 mins", userid))
+		return makeResponse("ADD_SHAKER", "SUCCESS", "User is now shaking, will remain active for 2 mins", userId))
 	except e:
-		return makeResponse("ADD_SHAKER", "FAILURE", str(e), userid))
+		return makeResponse("ADD_SHAKER", "FAILURE", str(e), userId))
 		
 		
 def getNearestShakers(userId, threshold):
