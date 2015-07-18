@@ -18,10 +18,8 @@ public class ApplicantSignupActivity extends Activity {
         setContentView(R.layout.applicant_signup_page);
     }
 
-    // TODO: Check if all of the fields are filled out and send all of the data to the server and get the USER_ID
     public void applicantJoinNowClicked(View view) {
 
-//firstName, lastName, password, emailAddress, phoneNumber, school, eduLevel, GPA, skills
         String fn = ((EditText)findViewById(R.id.applicant_first_name)).getText().toString();
         String ln = ((EditText)findViewById(R.id.applicant_last_name)).getText().toString();
         String pw = ((EditText)findViewById(R.id.applicant_password)).getText().toString();

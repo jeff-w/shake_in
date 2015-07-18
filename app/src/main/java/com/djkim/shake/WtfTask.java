@@ -46,6 +46,14 @@ public class WtfTask extends AsyncTask<String, Integer, Void> {
                 jsonObject.accumulate("GPA", strs[9]);
                 jsonObject.accumulate("skills", strs[10]);
             }
+            else if(strs[0].equals("recruiter")){
+                jsonObject.accumulate("firstName", strs[2]);
+                jsonObject.accumulate("lastName", strs[3]);
+                jsonObject.accumulate("password", strs[4]);
+                jsonObject.accumulate("emailAddress", strs[5]);
+                jsonObject.accumulate("phoneNumber", strs[6]);
+                jsonObject.accumulate("company", strs[7]);
+            }
 
             HttpClient httpClient = AndroidHttpClient.newInstance("Android");
             HttpPost httpPost = new HttpPost(url.toURI());
