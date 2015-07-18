@@ -104,5 +104,20 @@ public class ApplicantShakeActivity extends Activity {
         Toast.makeText(this, "" + latitude + " " + longitude, Toast.LENGTH_SHORT).show();
         shakeInitiated = false;
         mSensorManager.unregisterListener(mSensorEventListener);
+
+        //POST with lat/long
+        String u = "http://172.21.129.192:9000/applicantShake";
+        String lat = String.valueOf(latitude);
+        String lon = String.valueOf(longitude);
+
+        String[] args = {"applicantShake", u, lat, lon};
+
+        try{
+            new WtfTask().execute(args);
+        }
+        catch(Exception e){
+            //haha
+        }
+
     }
 }

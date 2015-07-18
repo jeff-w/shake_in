@@ -108,7 +108,18 @@ public class RecruiterShakeActivity extends Activity {
         startActivity(pickApplicantsIntent);
 
         //POST with lat/long
+        String u = "http://172.21.129.192:9000/recruiterShake";
+        String lat = String.valueOf(latitude);
+        String lon = String.valueOf(longitude);
 
+        String[] args = {"recruiterShake", u, lat, lon};
+
+        try{
+            new WtfTask().execute(args);
+        }
+        catch(Exception e){
+            //haha
+        }
 
         finish();
     }

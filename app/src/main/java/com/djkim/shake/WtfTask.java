@@ -4,6 +4,7 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.widget.EditText;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -11,6 +12,9 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 import org.xml.sax.XMLReader;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 
 import javax.xml.parsers.SAXParserFactory;
@@ -18,11 +22,12 @@ import javax.xml.parsers.SAXParserFactory;
 /**
  * Created by jfwong on 7/18/15.
  */
-public class WtfTask extends AsyncTask<String, Integer, Void> {
+public class WtfTask extends AsyncTask<String, Integer, HttpResponse> {
     private Exception exception;
 
 
-    protected Void doInBackground(String... strs) {
+    protected HttpResponse doInBackground(String... strs) {
+        HttpResponse resp = null;
         try {
             URL url = new URL(strs[1]);
             String json = "";
@@ -54,6 +59,14 @@ public class WtfTask extends AsyncTask<String, Integer, Void> {
                 jsonObject.accumulate("phoneNumber", strs[6]);
                 jsonObject.accumulate("company", strs[7]);
             }
+            else if(strs[0].equals("recruiterShake")){
+                jsonObject.accumulate("latitude", strs[2]);
+                jsonObject.accumulate("longitude", strs[3]);
+            }
+            else if(strs[0].equals("applicantShake")){
+                jsonObject.accumulate("latitude", strs[2]);
+                jsonObject.accumulate("longitude", strs[3]);
+            }
 
             HttpClient httpClient = AndroidHttpClient.newInstance("Android");
             HttpPost httpPost = new HttpPost(url.toURI());
@@ -65,20 +78,47 @@ public class WtfTask extends AsyncTask<String, Integer, Void> {
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
 
-            HttpResponse httpResponse = httpClient.execute(httpPost);
+            resp = httpClient.execute(httpPost);
         } catch (Exception e) {
             this.exception = e;
         }
-        return null;
+        return resp;
     }
 
     protected void onProgressUpdate(Integer... progress) {
-        System.out.println(progress);
+
     }
 
 
 
-    protected void onPostExecute(Long feed) {
-        System.out.println(feed);
+    protected void onPostExecute(HttpResponse resp) {
+        try {
+            StringBuilder builder = new StringBuilder();
+            HttpEntity e = resp.getEntity();
+            if (e != null) {
+                InputStream inputStream = e.getContent();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                for (String line = null; (line = bufferedReader.readLine()) != null; ) {
+                    builder.append(line).append("\n");
+                }
+                JSONObject jsonObject = new JSONObject(builder.toString());
+
+                String uid = jsonObject.getString("userID");
+                String desc = jsonObject.getString("desc");
+
+
+
+
+
+
+
+
+                System.out.println("uid is " + uid);
+                System.out.println("desc is " + desc);
+            }
+        }
+        catch(Exception e){
+            //lol
+        }
     }
 }
