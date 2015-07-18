@@ -23,19 +23,13 @@ def index():
 
 @app.route('/resume')
 def resume():
+    res = None
     try:
-        addUser(users, "tom", "manzini", "123", "123@123.com", "12345678901", "RPI", "BS", "1.0", "coding n shit")
+        res = addUser(users, recruiters, "tom", "manzini", "123", "1234@1234.com", "12345678901", "RPI", "BS", "1.0", "coding n shit")
     except(e):
         print e
-    return "Resume Page!!"
-
+    return str(res))
     
-
-    
-    
-    
-    
-
 if __name__ == '__main__':
     app.run(
     	host=app.config.get("HOST", "0.0.0.0"),
