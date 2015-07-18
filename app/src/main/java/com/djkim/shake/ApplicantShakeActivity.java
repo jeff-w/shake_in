@@ -103,5 +103,6 @@ public class ApplicantShakeActivity extends Activity {
     private void executeShakeAction() {
         Toast.makeText(this, "" + latitude + " " + longitude, Toast.LENGTH_SHORT).show();
         shakeInitiated = false;
+        mSensorManager.unregisterListener(mSensorEventListener);
     }
 }
