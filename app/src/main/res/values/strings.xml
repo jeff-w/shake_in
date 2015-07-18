@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Shake\'in</string>
+    <string name="shake_in">Shake\'in</string>
+    <string name="heading">Where talent touches opportunity</string>
+    <string name="action_settings"></string>
+    <string name="username">E-mail address</string>
+    <string name="password">Password</string>
+    <string name="whoareyou">I am a ...</string>
+</resources>
