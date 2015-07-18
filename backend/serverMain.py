@@ -51,7 +51,7 @@ def applicantHomepage():
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-
+       
 
         addShakerResponse1 = addShaker("test1", (1, 2), True)
         addShakerResponse2 = addShaker("test2", (3, 2), False)
@@ -144,6 +144,6 @@ def recruiterSignup():
 
     
 if __name__ == '__main__':
-    app.run(
+    app.run(debug=True,
     	host=app.config.get("HOST", "0.0.0.0"),
     	port=app.config.get("PORT", 9000))  
