@@ -41,6 +41,10 @@
             android:name=".RecruiterSignupActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".RecruiterShakeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
