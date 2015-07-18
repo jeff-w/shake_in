@@ -63,8 +63,14 @@ def getUserInfo(user_db, user_id):
 			res[elem] = user_id
 	return json.dumps(res)
 	
-	
-	
+def getId(userName, db):
+	userData = queryToList(db.find({'emailAddress' : userName}))
+	if(len(userData) == 0):
+		return None
+	for elem in userData[0]:
+		item = userData[0][elem]
+		if type(item) == type(ObjectId()):
+			return item
 	
 def validateLogin(user_db, recruiter_db, emailAddress, password):
 	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress, 'password' : password }))
