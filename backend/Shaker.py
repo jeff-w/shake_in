@@ -8,7 +8,7 @@ class Shaker:
 		self.isRecruiter = isRecruiter
 		
 	def isToOld(self):
-		return (datetime.datetime.now() - self.startTime).total_seconds() > 120: #two mins
+		return (datetime.datetime.now() - self.startTime).total_seconds() > 120 #two mins
 		
-	def isRecruiter()
-		return self.isRecruiter()
+	def isRecruiter(self):
+		return self.isRecruiter

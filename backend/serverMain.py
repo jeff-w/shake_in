@@ -4,6 +4,7 @@ from flask import request
 from flask import abort, redirect, url_for
 from pymongo import MongoClient
 from util import *
+from shakeUtil import *
 
 app = Flask(__name__)
 
@@ -49,7 +50,15 @@ def applicantHomepage():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
-        return "Error: applicantHomepage does not support POST yet\n"
+        jsonObject = request.get_json()
+
+        addShakerResponse = addShaker("test", (1, 2), True)
+
+
+
+
+
+        return "SUCCESS:POSTed!\n"
 
 @app.route('/recruiterHomepage', methods=['GET', 'POST'])
 def recruiterHomepage():
