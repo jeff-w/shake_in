@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shakein"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="150dp"
+            android:text="@string/shake_in" />
+
+        <TextView
+            android:id="@+id/heading"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="@dimen/punchline_margin"
+            android:layout_marginRight="@dimen/punchline_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="@string/heading"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/register_button"
+            android:background="@color/gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Join now"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/between_margin"
+            android:onClick="joinNowClicked"
+            />
+        <Button
+            android:id="@+id/signin_button"
+            android:background="@color/skyblue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Sign in"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/between_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:onClick="signInClicked"
+            />
+    </LinearLayout>
+</LinearLayout>
