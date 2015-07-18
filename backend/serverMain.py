@@ -15,17 +15,7 @@ recruiters = db.recruiters
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-    	return 'You submitted a post request'
-    else:
-    	return 'You tried 2 GET'
-
-
-@app.route('/resume')
-def resume():
-    #res = addUser(users, recruiters, "tom", "manzini", "goodPassword", "goodEmail", "12345678901", "RPI", "BS", "1.0", "coding n shit")
-    
-    return redirect(url_for('applicantHomepage'))
+    return 'Welcome to the Shake\'in backend, dont screw up here.'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -105,6 +95,7 @@ def applicantSignup():
 
         else:
             return "Email address in use"
+           
 
 
 @app.route('/recruiterSignup', methods=['GET', 'POST'])
@@ -113,28 +104,23 @@ def recruiterSignup():
         return 'Sign in, recruiter!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-        requestEmail = jsonObject['emailAddress']
+        requestEmailAddress = jsonObject['emailAddress']
         requestPassword = jsonObject['password']
         requestFirstName = jsonObject['firstName']
         requestLastName = jsonObject['lastName']
         requestPhoneNumber = jsonObject['phoneNumber']
-        requestSchool = jsonObject['school']
-        requestEduLevel = jsonObject['eduLevel']
-        requestGpa = jsonObject['GPA']
-        requestSkills = jsonObject['skills']
-
+        requestCompany = jsonObject['company']
+        
 
         addRecruiterResponse = addRecruiter(users,
                                             recruiters,
                                             requestFirstName,
-                                            requestLastName, 
-                                            requestPassword,
+                                            requestLastName,
+                                            requestPassword, 
                                             requestEmailAddress,
                                             requestPhoneNumber,
-                                            requestSchool,
-                                            requestEduLevel,
-                                            requestGPA,
-                                            requestSkills)
+                                            requestCompany)
+
         signupStatus = addRecruiterResponse['result']
 
         if signupStatus == "SUCCESS":

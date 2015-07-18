@@ -2,6 +2,8 @@ package com.djkim.shake;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -12,15 +14,32 @@ import java.util.ArrayList;
  */
 public class PickApplicantsActivity extends Activity {
     private ArrayList<Applicant> applicantList = Applicant.applicantList();
+    private ApplicantsAdapter adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pick_applicants);
 
-        ApplicantsAdapter adapter = new ApplicantsAdapter(this, applicantList);
+        adapter = new ApplicantsAdapter(this, applicantList);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.lv);
+        listView = (ListView) findViewById(R.id.lv);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?>adapter,View v, int position, long id){
+                applicantList.remove(position);
+                resetListView();
+            }
+
+
+        });
+        listView.setAdapter(adapter);
+    }
+
+    private void resetListView() {
+        adapter.clear();
+        adapter.addAll(applicantList);
         listView.setAdapter(adapter);
     }
 }
