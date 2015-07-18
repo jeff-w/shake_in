@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by dongjoonkim on 7/17/15.
@@ -30,13 +31,12 @@ public class RecruiterSignupActivity extends Activity {
         String[] args = {"recruiter", u, em, pw, fn, ln, pn, cp};
         try {
             new WtfTask().execute(args);
+            Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
+            startActivity(shakeIntent);
+            finish();
         }
         catch(Exception e){
-            Log.e("error", e.getMessage());
+            Toast.makeText(this, "Invalid login credential!", Toast.LENGTH_SHORT).show();
         }
-
-        Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
-        startActivity(shakeIntent);
-        finish();
     }
 }
