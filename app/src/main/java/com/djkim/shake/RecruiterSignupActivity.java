@@ -19,5 +19,6 @@ public class RecruiterSignupActivity extends Activity {
     public void recruiterJoinNowClicked(View view) {
         Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
         startActivity(shakeIntent);
+        finish();
     }
 }
