@@ -70,7 +70,7 @@ public class ApplicantShakeActivity extends Activity {
         }
         else
         {
-            Toast.makeText(this, "HEY!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Location tracking is not available", Toast.LENGTH_SHORT).show();
         }
     }
 

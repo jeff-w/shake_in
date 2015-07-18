@@ -110,8 +110,7 @@ public class GPSTracker extends Service implements LocationListener {
                         provider_info,
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES,
-                        this
-                );
+                        this);
 
                 if (locationManager != null) {
                     location = locationManager.getLastKnownLocation(provider_info);

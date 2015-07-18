@@ -24,7 +24,7 @@ def index():
 @app.route('/resume')
 def resume():
     try:
-        addUser(users, "tom", "manzini", "123", "123@123.com", "12345678901", "RPI", "BS", "1.0", "coding")
+        addUser(users, "tom", "manzini", "123", "123@123.com", "12345678901", "RPI", "BS", "1.0", "coding n shit")
     except(e):
         print e
     return "Resume Page!!"
