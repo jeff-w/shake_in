@@ -1,12 +1,14 @@
 from flask import Flask
 from flask import request
 from pymongo import MongoClient
+from util import *
 
 app = Flask(__name__)
 
 dbClient = MongoClient('mongodb://Shake_In:password1@ds047652.mongolab.com:47652/shake_in')
 db = dbClient.shake_in
 users = db.users
+recruiters = db.recruiters
 
 
 print "got past that"
@@ -22,19 +24,17 @@ def index():
 @app.route('/resume')
 def resume():
     try:
-        users.insert({ 'username' : 'thomas', 'password' : 'nossl', 'email' : 'test@test.com' })
+        addUser(users, "tom", "manzini", "123", "123@123.com", "12345678901", "RPI", "BS", "1.0", "coding")
     except(e):
         print e
     return "Resume Page!!"
 
+    
 
-
-
-
-
-
-
-
+    
+    
+    
+    
 
 if __name__ == '__main__':
     app.run(
