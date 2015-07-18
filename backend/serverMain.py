@@ -1,3 +1,4 @@
+import json
 from flask import Flask
 from flask import request
 from pymongo import MongoClient
@@ -10,8 +11,6 @@ db = dbClient.shake_in
 users = db.users
 recruiters = db.recruiters
 
-
-print "got past that"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -29,8 +28,15 @@ def resume():
         print e
     return "Resume Page!!"
 
-    
-
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return 'login page\n'
+    if request.method == 'POST':
+        json_object = request.get_json()
+        json_string = json.dumps(json_object)
+        
+        return json_object['username']
     
     
     
