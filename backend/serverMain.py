@@ -39,35 +39,48 @@ def login():
 
         print json.dumps(jsonObject)
 
-        if loginStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
-        else:
-            return "Login failed\n"
-            # TODO: redirect back here
+        return json.dumps(loginValidation)
 
 @app.route('/applicantShake', methods=['GET', 'POST'])
-def applicantHomepage():
+def applicantShake():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
+        lat = jsonObject['latitude']
+        lon = jsonObject['longitude']
 
 
-        addShakerResponse1 = addShaker("test1", (1, 2), True)
-        addShakerResponse2 = addShaker("test2", (3, 2), False)
-        addShakerResponse3 = addShaker("test3", (5, 2), False)
-        addShakerResponse4 = addShaker("test5", (2, 2), False)
 
-        nearestShaker = getNearestShakers("test1", 50)
+        print lat
+        print lon
+
+        applicantShaker = addShaker("applicant1", (float(lat), float(lon)), False)
+
+
 
 
         return "SUCCESS:POSTed!\n"
 
 @app.route('/recruiterShake', methods=['GET', 'POST'])
-def recruiterHomepage():
+def recruiterShake():
     if request.method == 'GET':
         return 'Welcome back, recruiter!\n'
     if request.method == 'POST':
+        jsonObject = request.get_json()
+        lat = jsonObject['latitude']
+        lon = jsonObject['longitude']
+
+
+
+        print lat
+        print '\n'
+        print lon
+
+        applicantShaker = addShaker("recruiter1", (float(lat), float(lon)), True)
+        nearestShakers = getNearestShakers("test1", 50)
+
+
         return "Error: recruiterHomepage does not support POST yet\n"
 
 @app.route('/applicantSignup', methods=['GET', 'POST'])
