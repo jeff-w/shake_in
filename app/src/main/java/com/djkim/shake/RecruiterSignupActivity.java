@@ -1,6 +1,7 @@
 package com.djkim.shake;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,6 +17,7 @@ public class RecruiterSignupActivity extends Activity {
 
     // TODO: Check if all of the fields are filled out and send all of the data to the server and get the USER_ID
     public void recruiterJoinNowClicked(View view) {
-
+        Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
+        startActivity(shakeIntent);
     }
 }
