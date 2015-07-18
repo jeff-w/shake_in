@@ -51,13 +51,7 @@ def applicantShake():
         lon = jsonObject['longitude']
 
 
-
-        print lat
-        print lon
-
-        applicantShaker = addShaker("applicant1", (float(lat), float(lon)), False)
-
-
+        applicantShaker1 = addShaker("applicant1", (float(lat), float(lon)), False)
 
 
         return "SUCCESS:POSTed!\n"
@@ -72,16 +66,10 @@ def recruiterShake():
         lon = jsonObject['longitude']
 
 
-
-        print lat
-        print '\n'
-        print lon
-
         applicantShaker = addShaker("recruiter1", (float(lat), float(lon)), True)
-        nearestShakers = getNearestShakers("test1", 50)
+        nearestShakers = getNearestShakers("recruiter1", 50000)
 
-
-        return "Error: recruiterHomepage does not support POST yet\n"
+        return json.dumps(nearestShakers['userID'])
 
 @app.route('/applicantSignup', methods=['GET', 'POST'])
 def applicantSignup():
@@ -115,11 +103,7 @@ def applicantSignup():
 
         signupStatus = addUserResponse['result']
 
-        if signupStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
-
-        else:
-            return "Email address in use"
+        return json.dumps(addUserResponse)
            
 
 
@@ -148,15 +132,10 @@ def recruiterSignup():
 
         signupStatus = addRecruiterResponse['result']
 
-        if signupStatus == "SUCCESS":
-            return redirect(url_for('recruiterHomepage'))
-
-        else:
-            return "Email address in use"
-
+        return json.dumps(addRecruiterResponse)
 
     
 if __name__ == '__main__':
-    app.run(
+    app.run(debug=True,
     	host=app.config.get("HOST", "0.0.0.0"),
     	port=app.config.get("PORT", 9000))  

@@ -52,6 +52,6 @@ def getNearestShakers(userId, threshold):
 		for elem in sortedResults:
 			print "looping"
 			sparseResults.append(elem.userId)
-		return makeResponse("NEAREST_SHAKER", "SUCCESS", "Results Included", str(sparseResults))
+		return makeResponse("NEAREST_SHAKER", "SUCCESS", "Results Included", sparseResults)
 	except e:
 		return makeResponse("NEAREST_SHAKER", "FAILURE", str(e), "")
