@@ -45,22 +45,25 @@ def login():
             return "Login failed\n"
             # TODO: redirect back here
 
-@app.route('/applicantHomepage', methods=['GET', 'POST'])
+@app.route('/applicantShake', methods=['GET', 'POST'])
 def applicantHomepage():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
 
-        addShakerResponse = addShaker("test", (1, 2), True)
 
+        addShakerResponse1 = addShaker("test1", (1, 2), True)
+        addShakerResponse2 = addShaker("test2", (3, 2), False)
+        addShakerResponse3 = addShaker("test3", (5, 2), False)
+        addShakerResponse4 = addShaker("test5", (2, 2), False)
 
-
+        nearestShaker = getNearestShakers("test1", 50)
 
 
         return "SUCCESS:POSTed!\n"
 
-@app.route('/recruiterHomepage', methods=['GET', 'POST'])
+@app.route('/recruiterShake', methods=['GET', 'POST'])
 def recruiterHomepage():
     if request.method == 'GET':
         return 'Welcome back, recruiter!\n'
