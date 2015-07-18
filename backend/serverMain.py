@@ -15,17 +15,7 @@ recruiters = db.recruiters
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-    	return 'You submitted a post request'
-    else:
-    	return 'You tried 2 GET'
-
-
-@app.route('/resume')
-def resume():
-    #res = addUser(users, recruiters, "tom", "manzini", "goodPassword", "goodEmail", "12345678901", "RPI", "BS", "1.0", "coding n shit")
-    
-    return redirect(url_for('applicantHomepage'))
+    return 'Welcome to the Shake\'in backend, dont screw up here.'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -105,6 +95,7 @@ def applicantSignup():
 
         else:
             return "Email address in use"
+           
 
 
 @app.route('/recruiterSignup', methods=['GET', 'POST'])

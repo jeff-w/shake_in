@@ -42,7 +42,7 @@ def addRecruiter(user_db, recruiter_db, firstName, lastName, password, emailAddr
 	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress }))
 	if len(dbResponse) >= 1:                                                  # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another recruiter", "")
-	id = user_db.insert({ 
+	id = recruiter_db.insert({ 
 	           'firstName':firstName, 
 	           'lastName':lastName, 
 	           'password':password, 
