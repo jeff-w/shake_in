@@ -86,8 +86,6 @@ def applicantSignup():
         requestGPA = jsonObject['GPA']
         requestSkills = jsonObject['skills']
 
-        print "got here"
-
         addUserResponse = addUser(  users,
                                     recruiters,
                                     requestFirstName,
@@ -99,8 +97,6 @@ def applicantSignup():
                                     requestEduLevel,
                                     requestGPA,
                                     requestSkills)
-
-        print "got there"
 
         signupStatus = addUserResponse['result']
 
