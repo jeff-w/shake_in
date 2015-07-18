@@ -39,36 +39,37 @@ def login():
 
         print json.dumps(jsonObject)
 
-        if loginStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
-        else:
-            return "Login failed\n"
-            # TODO: redirect back here
+        return json.dumps(loginValidation)
 
 @app.route('/applicantShake', methods=['GET', 'POST'])
-def applicantHomepage():
+def applicantShake():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-       
+        lat = jsonObject['latitude']
+        lon = jsonObject['longitude']
 
-        addShakerResponse1 = addShaker("test1", (1, 2), True)
-        addShakerResponse2 = addShaker("test2", (3, 2), False)
-        addShakerResponse3 = addShaker("test3", (5, 2), False)
-        addShakerResponse4 = addShaker("test5", (2, 2), False)
 
-        nearestShaker = getNearestShakers("test1", 50)
+        applicantShaker1 = addShaker("applicant1", (float(lat), float(lon)), False)
 
 
         return "SUCCESS:POSTed!\n"
 
 @app.route('/recruiterShake', methods=['GET', 'POST'])
-def recruiterHomepage():
+def recruiterShake():
     if request.method == 'GET':
         return 'Welcome back, recruiter!\n'
     if request.method == 'POST':
-        return "Error: recruiterHomepage does not support POST yet\n"
+        jsonObject = request.get_json()
+        lat = jsonObject['latitude']
+        lon = jsonObject['longitude']
+
+
+        applicantShaker = addShaker("recruiter1", (float(lat), float(lon)), True)
+        nearestShakers = getNearestShakers("recruiter1", 50000)
+
+        return json.dumps(nearestShakers['userID'])
 
 @app.route('/applicantSignup', methods=['GET', 'POST'])
 def applicantSignup():
@@ -102,11 +103,7 @@ def applicantSignup():
 
         signupStatus = addUserResponse['result']
 
-        if signupStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
-
-        else:
-            return "Email address in use"
+        return json.dumps(addUserResponse)
            
 
 
@@ -135,12 +132,7 @@ def recruiterSignup():
 
         signupStatus = addRecruiterResponse['result']
 
-        if signupStatus == "SUCCESS":
-            return redirect(url_for('recruiterHomepage'))
-
-        else:
-            return "Email address in use"
-
+        return json.dumps(addRecruiterResponse)
 
     
 if __name__ == '__main__':
