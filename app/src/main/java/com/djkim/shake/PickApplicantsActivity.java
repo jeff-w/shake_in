@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class PickApplicantsActivity extends Activity {
             public void onItemClick(AdapterView<?>adapter,View v, int position, long id){
                 applicantList.remove(position);
                 resetListView();
+                Toast.makeText(PickApplicantsActivity.this, "" + position, Toast.LENGTH_SHORT).show();
             }
 
 
@@ -38,8 +40,6 @@ public class PickApplicantsActivity extends Activity {
     }
 
     private void resetListView() {
-        adapter.clear();
-        adapter.addAll(applicantList);
         listView.setAdapter(adapter);
     }
 }
