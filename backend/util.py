@@ -17,7 +17,7 @@ def makeResponse(action, result, desc, userID):
 	
 
 def addUser(user_db, recruiter_db, firstName, lastName, password, emailAddress, phoneNumber, school, eduLevel, GPA, skills):
-	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))  # Query the database for the provide username
+	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))  # Query the database for the provide emailAddress
 	if len(dbResponse) >= 1:                                               # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another user", "")
 	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress }))
@@ -66,12 +66,12 @@ def getUserInfo(user_db, user_id):
 	
 	
 	
-def validateLogin(user_db, recruiter_db, userName, password):
-	dbResponse = queryToList(user_db.find({ 'userName' : userName, 'password' : password }))
+def validateLogin(user_db, recruiter_db, emailAddress, password):
+	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress, 'password' : password }))
 	if len(dbResponse) == 1:                                               # If we found a match of the person's log in info, then we are all good and they can log in
 		return makeResponse("LOGIN", "SUCCESS", "USER", str(dbResponse[0]['_id']))
-	dbResponse = queryToList(recruiter_db.find({ 'userName' : userName, 'password' : password }))
+	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress, 'password' : password }))
 	if len(dbResponse) == 1:                                               # We received multiple responses - this should not be possible
 		return makeResponse("LOGIN", "SUCCESS", "RECRUITER", str(dbResponse[0]['_id']))
-	return makeResponse("LOGIN", "FAILURE", "Password and username do not match database, invalid login", "")
+	return makeResponse("LOGIN", "FAILURE", "Password and emailAddress do not match database, invalid login", "")
 	

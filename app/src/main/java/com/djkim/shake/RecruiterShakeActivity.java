@@ -2,6 +2,7 @@ package com.djkim.shake;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -102,5 +103,8 @@ public class RecruiterShakeActivity extends Activity {
     private void executeShakeAction() {
         Toast.makeText(this, "" + latitude + " " + longitude, Toast.LENGTH_SHORT).show();
         shakeInitiated = false;
+        Intent pickApplicantsIntent = new Intent(this, PickApplicantsActivity.class);
+        startActivity(pickApplicantsIntent);
+        finish();
     }
 }

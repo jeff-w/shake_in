@@ -19,5 +19,6 @@ public class ApplicantSignupActivity extends Activity {
     public void applicantJoinNowClicked(View view) {
         Intent shakeIntent = new Intent(this, ApplicantShakeActivity.class);
         startActivity(shakeIntent);
+        finish();
     }
 }
