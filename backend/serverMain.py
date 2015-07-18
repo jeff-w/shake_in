@@ -46,6 +46,8 @@ def login():
                                         requestPassword)
         loginStatus = loginValidation['result']
 
+        print json.dumps(jsonObject)
+
         if loginStatus == "SUCCESS":
             return redirect(url_for('applicantHomepage'))
         else:
@@ -72,16 +74,19 @@ def applicantSignup():
         return 'Sign in, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-        requestEmail = jsonObject['emailAddress']
+        print json.dumps(jsonObject)
+
+        requestEmailAddress = jsonObject['emailAddress']
         requestPassword = jsonObject['password']
         requestFirstName = jsonObject['firstName']
         requestLastName = jsonObject['lastName']
         requestPhoneNumber = jsonObject['phoneNumber']
         requestSchool = jsonObject['school']
         requestEduLevel = jsonObject['eduLevel']
-        requestGpa = jsonObject['GPA']
+        requestGPA = jsonObject['GPA']
         requestSkills = jsonObject['skills']
 
+        print "got here"
 
         addUserResponse = addUser(  users,
                                     recruiters,
@@ -94,6 +99,9 @@ def applicantSignup():
                                     requestEduLevel,
                                     requestGPA,
                                     requestSkills)
+
+        print "got there"
+
         signupStatus = addUserResponse['result']
 
         if signupStatus == "SUCCESS":
@@ -134,7 +142,7 @@ def recruiterSignup():
         signupStatus = addRecruiterResponse['result']
 
         if signupStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
+            return redirect(url_for('recruiterHomepage'))
 
         else:
             return "Email address in use"
