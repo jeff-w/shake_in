@@ -106,6 +106,10 @@ public class RecruiterShakeActivity extends Activity {
         mSensorManager.unregisterListener(mSensorEventListener);
         Intent pickApplicantsIntent = new Intent(this, PickApplicantsActivity.class);
         startActivity(pickApplicantsIntent);
+
+        //POST with lat/long
+
+
         finish();
     }
 }
