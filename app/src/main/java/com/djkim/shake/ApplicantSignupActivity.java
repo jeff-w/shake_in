@@ -43,5 +43,6 @@ public class ApplicantSignupActivity extends Activity {
 
         Intent shakeIntent = new Intent(this, ApplicantShakeActivity.class);
         startActivity(shakeIntent);
+        finish();
     }
 }

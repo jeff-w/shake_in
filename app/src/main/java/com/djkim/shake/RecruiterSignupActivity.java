@@ -22,5 +22,6 @@ public class RecruiterSignupActivity extends Activity {
 
         Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
         startActivity(shakeIntent);
+        finish();
     }
 }

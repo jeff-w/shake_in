@@ -29,4 +29,6 @@
     <string name="shake_helper_text">Make sure you are within 10 feet of your recruiter!</string>
     <string name="shake_helper_text_recruiter">Make sure you are within 10 feet of your applicants!</string>
 
+    <string name="pick_your_candidates">Pick your candidates!</string>
+
 </resources>
