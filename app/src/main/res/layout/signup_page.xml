@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/whoareyou"
             android:textColor="@color/white"
-            android:textSize="50sp"
+            android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -24,7 +24,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/recruiter_signup"
+            android:layout_marginTop="100dp"
+            android:layout_width="100dp"
+            android:layout_height="190dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/recruiter"
+            android:layout_marginLeft="@dimen/button_margin"
+            android:layout_marginRight="@dimen/between_margin"
+            android:onClick="recruiterButtonClicked"
+            />
+
+        <Button
+            android:id="@+id/applicant_signup"
+            android:layout_marginTop="100dp"
+            android:layout_width="100dp"
+            android:layout_height="190dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/applicant"
+            android:layout_marginLeft="@dimen/between_margin"
+            android:layout_marginRight="@dimen/button_margin"
+            android:onClick="applicantButtonClicked"
+            />
 
     </LinearLayout>
 </LinearLayout>

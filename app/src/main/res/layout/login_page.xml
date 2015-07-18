@@ -9,12 +9,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/shakein"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/shake_in" />
+
         <EditText
             android:id="@+id/login_id"
             android:inputType="textEmailAddress"
             android:background="@color/white"
             android:textSize="15sp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/edittext_margin"

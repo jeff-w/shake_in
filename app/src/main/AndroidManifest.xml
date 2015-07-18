@@ -25,6 +25,14 @@
             android:name=".SignupActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ApplicantSignupActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".RecruiterSignupActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
