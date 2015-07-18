@@ -24,5 +24,7 @@
         <item>Ph.D</item>
     </string-array>
     <string name="education_level_prompt">Choose an education level</string>
+    <string name="shake_and_apply">Shake your device to apply!</string>
+    <string name="shake_helper_text">Make sure you are within 10 feet of your recruiter!</string>
 
 </resources>

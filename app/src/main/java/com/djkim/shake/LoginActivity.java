@@ -12,7 +12,6 @@ public class LoginActivity extends Activity {
     }
 
     // TODO: Make a function that checks the credential of the user
-
     public void signinButtonClicked(View view) {
 
     }
