@@ -1,8 +1,12 @@
 package com.djkim.shake;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,7 +28,8 @@ import javax.xml.parsers.SAXParserFactory;
  */
 public class WtfTask extends AsyncTask<String, Integer, HttpResponse> {
     private Exception exception;
-
+    private String userID;
+    private String desc;
 
     protected HttpResponse doInBackground(String... strs) {
         HttpResponse resp = null;
@@ -103,22 +108,16 @@ public class WtfTask extends AsyncTask<String, Integer, HttpResponse> {
                 }
                 JSONObject jsonObject = new JSONObject(builder.toString());
 
-                String uid = jsonObject.getString("userID");
-                String desc = jsonObject.getString("desc");
-
-
-
-
-
-
-
-
-                System.out.println("uid is " + uid);
-                System.out.println("desc is " + desc);
+                userID = jsonObject.getString("userID");
+                desc = jsonObject.getString("desc");
             }
         }
         catch(Exception e){
             //lol
         }
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }

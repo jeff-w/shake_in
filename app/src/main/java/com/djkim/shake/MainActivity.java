@@ -7,6 +7,7 @@ import android.view.View;
 
 
 public class MainActivity extends Activity {
+    final String PREFS_NAME = "prefs_file";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

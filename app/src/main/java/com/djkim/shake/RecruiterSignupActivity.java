@@ -30,13 +30,14 @@ public class RecruiterSignupActivity extends Activity {
 
         String[] args = {"recruiter", u, em, pw, fn, ln, pn, cp};
         try {
-            new WtfTask().execute(args);
+            WtfTask wtfTask = new WtfTask();
+            wtfTask.execute(args);
             Intent shakeIntent = new Intent(this, RecruiterShakeActivity.class);
             startActivity(shakeIntent);
             finish();
         }
         catch(Exception e){
-            Toast.makeText(this, "Invalid login credential!", Toast.LENGTH_SHORT).show();
+            Log.e("error", e.getMessage());
         }
     }
 }

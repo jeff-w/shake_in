@@ -1,10 +1,13 @@
 package com.djkim.shake;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,10 +31,15 @@ public class LoginActivity extends Activity {
         String[] args = {"login", u, emailAddress, pass};
 
         try {
-            new WtfTask().execute(args);
+            WtfTask wtfTask = new WtfTask();
+            String userType = wtfTask.getDesc();
+
+            Intent applicantIntent = new Intent(this, ApplicantShakeActivity.class);
+            startActivity(applicantIntent);
+            finish();
         }
         catch(Exception e){
-            Log.e("error", e.getMessage());
+            Toast.makeText(this, "Invalid login credential!", Toast.LENGTH_SHORT).show();
         }
     }
 
