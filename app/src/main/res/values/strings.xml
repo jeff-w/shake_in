@@ -5,4 +5,5 @@
     <string name="action_settings"></string>
     <string name="username">E-mail address</string>
     <string name="password">Password</string>
+    <string name="whoareyou">I am a ...</string>
 </resources>

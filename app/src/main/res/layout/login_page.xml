@@ -39,7 +39,7 @@
 
         <Button
             android:id="@+id/signin_button"
-            android:background="@color/skyblue"
+            android:background="@drawable/button_clicked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -47,6 +47,7 @@
             android:layout_marginRight="@dimen/signin_button_margin"
             android:text="Sign in"
             android:textSize="20sp"
+            android:onClick="signinButtonClicked"
             />
 
     </LinearLayout>

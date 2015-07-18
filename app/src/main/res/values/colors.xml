@@ -4,6 +4,8 @@
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
     <color name="skyblue">#ff00bfff</color>
+    <color name="clickedBlue">#ff0077b5</color>
     <color name="gray">#ff888888</color>
+    <color name="darkgray">#ff666666</color>
 
 </resources>
