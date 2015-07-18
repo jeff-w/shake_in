@@ -4,6 +4,7 @@ from flask import request
 from flask import abort, redirect, url_for
 from pymongo import MongoClient
 from util import *
+from shakeUtil import *
 
 app = Flask(__name__)
 
@@ -15,17 +16,7 @@ recruiters = db.recruiters
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-    	return 'You submitted a post request'
-    else:
-    	return 'You tried 2 GET'
-
-
-@app.route('/resume')
-def resume():
-    #res = addUser(users, recruiters, "tom", "manzini", "goodPassword", "goodEmail", "12345678901", "RPI", "BS", "1.0", "coding n shit")
-    
-    return redirect(url_for('applicantHomepage'))
+    return 'Welcome to the Shake\'in backend, dont screw up here.'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -46,6 +37,8 @@ def login():
                                         requestPassword)
         loginStatus = loginValidation['result']
 
+        print json.dumps(jsonObject)
+
         if loginStatus == "SUCCESS":
             return redirect(url_for('applicantHomepage'))
         else:
@@ -57,7 +50,15 @@ def applicantHomepage():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
-        return "Error: applicantHomepage does not support POST yet\n"
+        jsonObject = request.get_json()
+
+        addShakerResponse = addShaker("test", (1, 2), True)
+
+
+
+
+
+        return "SUCCESS:POSTed!\n"
 
 @app.route('/recruiterHomepage', methods=['GET', 'POST'])
 def recruiterHomepage():
@@ -72,16 +73,17 @@ def applicantSignup():
         return 'Sign in, applicant!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-        requestEmail = jsonObject['emailAddress']
+        print json.dumps(jsonObject)
+
+        requestEmailAddress = jsonObject['emailAddress']
         requestPassword = jsonObject['password']
         requestFirstName = jsonObject['firstName']
         requestLastName = jsonObject['lastName']
         requestPhoneNumber = jsonObject['phoneNumber']
         requestSchool = jsonObject['school']
         requestEduLevel = jsonObject['eduLevel']
-        requestGpa = jsonObject['GPA']
+        requestGPA = jsonObject['GPA']
         requestSkills = jsonObject['skills']
-
 
         addUserResponse = addUser(  users,
                                     recruiters,
@@ -94,6 +96,7 @@ def applicantSignup():
                                     requestEduLevel,
                                     requestGPA,
                                     requestSkills)
+
         signupStatus = addUserResponse['result']
 
         if signupStatus == "SUCCESS":
@@ -101,6 +104,7 @@ def applicantSignup():
 
         else:
             return "Email address in use"
+           
 
 
 @app.route('/recruiterSignup', methods=['GET', 'POST'])
@@ -109,32 +113,27 @@ def recruiterSignup():
         return 'Sign in, recruiter!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-        requestEmail = jsonObject['emailAddress']
+        requestEmailAddress = jsonObject['emailAddress']
         requestPassword = jsonObject['password']
         requestFirstName = jsonObject['firstName']
         requestLastName = jsonObject['lastName']
         requestPhoneNumber = jsonObject['phoneNumber']
-        requestSchool = jsonObject['school']
-        requestEduLevel = jsonObject['eduLevel']
-        requestGpa = jsonObject['GPA']
-        requestSkills = jsonObject['skills']
-
+        requestCompany = jsonObject['company']
+        
 
         addRecruiterResponse = addRecruiter(users,
                                             recruiters,
                                             requestFirstName,
-                                            requestLastName, 
-                                            requestPassword,
+                                            requestLastName,
+                                            requestPassword, 
                                             requestEmailAddress,
                                             requestPhoneNumber,
-                                            requestSchool,
-                                            requestEduLevel,
-                                            requestGPA,
-                                            requestSkills)
+                                            requestCompany)
+
         signupStatus = addRecruiterResponse['result']
 
         if signupStatus == "SUCCESS":
-            return redirect(url_for('applicantHomepage'))
+            return redirect(url_for('recruiterHomepage'))
 
         else:
             return "Email address in use"
