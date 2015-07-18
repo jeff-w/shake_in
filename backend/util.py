@@ -35,8 +35,8 @@ def addUser(user_db, recruiter_db, firstName, lastName, password, emailAddress, 
 	           'skills':skills})
 	return makeResponse("CREATE_USER", "SUCCESS", "User account was created successfully", str(id))
 	           
-def addRecruiter(user_db, recruiter_db, firstName, lastName, password, emailAddress, phoneNumber, school, eduLevel, GPA, skills):
-	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))     # Query the database for the provide emailAddress
+def addRecruiter(user_db, recruiter_db, firstName, lastName, password, emailAddress, phoneNumber, company):
+	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))     # Query the database for the provide username
 	if len(dbResponse) >= 1:                                                  # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another user", "")
 	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress }))
@@ -48,7 +48,7 @@ def addRecruiter(user_db, recruiter_db, firstName, lastName, password, emailAddr
 	           'password':password, 
 	           'emailAddress':emailAddress, 
 	           'phoneNumber':phoneNumber, 
-	           'company':school})
+	           'company':company})
 	return makeResponse("CREATE_RECRUITER", "SUCCESS", "User account was created successfully", str(id))
 	
 def getUserInfo(user_db, user_id):
