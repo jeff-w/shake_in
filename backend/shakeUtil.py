@@ -10,13 +10,14 @@ def addShaker(self, userId, gpsLoc):
 		while (x < len(shakeActives):
 			if(userId == shakeActives.userId):
 				shakeActives[x] = Shaker(userId, gpsLoc)
-				return makeResponse("ADD_SHAKER", "SUCCESS", "User is currently shaking, will remain active for 2 mins", userid))
+				return makeResponse("ADD_SHAKER", "SUCCESS", "User is already shaking, will remain active for 2 more mins", userid))
 			if(shakeActives[x].isToOld()):
 				shakeActives.pop(x)
+				x -= 1
 			x += 1
 			
 		shakeActices.append(Shaker(userId, gpsLoc))
-		return makeResponse("ADD_SHAKER", "SUCCESS", "User is currently shaking, will remain active for 2 mins", userid))
+		return makeResponse("ADD_SHAKER", "SUCCESS", "User is now shaking, will remain active for 2 mins", userid))
 	except e:
 		return makeResponse("ADD_SHAKER", "FAILURE", str(e), userid))
 		
