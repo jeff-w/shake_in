@@ -1,3 +1,6 @@
+from bson.objectid import ObjectId
+import json
+
 # Converts a cursor object (returned from MongoDB request)
 # into a list by iterating over it (not super efficient)
 def queryToList(cursorObject):
@@ -14,13 +17,13 @@ def makeResponse(action, result, desc, userID):
 	
 
 def addUser(user_db, recruiter_db, firstName, lastName, password, emailAddress, phoneNumber, school, eduLevel, GPA, skills):
-	dbResponse = queryToList(user_db.find({ 'userName' : emailAddress }))  # Query the database for the provide username
+	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))  # Query the database for the provide username
 	if len(dbResponse) >= 1:                                               # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another user", "")
-	dbResponse = queryToList(recruiter_db.find({ 'userName' : emailAddress }))
+	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress }))
 	if len(dbResponse) >= 1:                                               # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another recruiter", "")
-	id = db.insert_one({'userName':emailAddress, 
+	id = user_db.insert({ 
 	           'firstName':firstName, 
 	           'lastName':lastName, 
 	           'password':password, 
@@ -29,24 +32,37 @@ def addUser(user_db, recruiter_db, firstName, lastName, password, emailAddress, 
 	           'school':school, 
 	           'eduLevel':eduLevel, 
 	           'GPA':GPA, 
-	           'skills':skills}).inserted_id
+	           'skills':skills})
 	return makeResponse("CREATE_USER", "SUCCESS", "User account was created successfully", str(id))
 	           
 def addRecruiter(user_db, recruiter_db, firstName, lastName, password, emailAddress, phoneNumber, school, eduLevel, GPA, skills):
-	dbResponse = queryToList(user_db.find({ 'userName' : emailAddress }))  # Query the database for the provide username
-	if len(dbResponse) >= 1:                                               # We received multiple responses - this should not be possible
+	dbResponse = queryToList(user_db.find({ 'emailAddress' : emailAddress }))     # Query the database for the provide username
+	if len(dbResponse) >= 1:                                                  # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another user", "")
-	dbResponse = queryToList(recruiter_db.find({ 'userName' : emailAddress }))
-	if len(dbResponse) >= 1:                                               # We received multiple responses - this should not be possible
+	dbResponse = queryToList(recruiter_db.find({ 'emailAddress' : emailAddress }))
+	if len(dbResponse) >= 1:                                                  # We received multiple responses - this should not be possible
 		return makeResponse("CREATE_USER", "FAILURE", "That email address is already being used by another recruiter", "")
-	id = db.insert_one({'userName':emailAddress, 
+	id = user_db.insert({ 
 	           'firstName':firstName, 
 	           'lastName':lastName, 
 	           'password':password, 
 	           'emailAddress':emailAddress, 
 	           'phoneNumber':phoneNumber, 
-	           'company':school}).inserted_id
+	           'company':school})
 	return makeResponse("CREATE_RECRUITER", "SUCCESS", "User account was created successfully", str(id))
+	
+def getUserInfo(user_db, user_id):
+	userData = queryToList(user_db.find({'_id': ObjectId(user_id)}))
+	res = {}
+	for elem in userData[0]:
+		item = userData[0][elem]
+		print type(item)
+		if type(item) != type(ObjectId()):
+			res[elem] = item
+		else:
+			res[elem] = user_id
+	return json.dumps(res)
+	
 	
 	
 	
