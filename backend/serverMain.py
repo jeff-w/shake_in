@@ -4,6 +4,7 @@ from flask import request
 from flask import abort, redirect, url_for
 from pymongo import MongoClient
 from util import *
+from shakeUtil import *
 
 app = Flask(__name__)
 
@@ -49,7 +50,15 @@ def applicantHomepage():
     if request.method == 'GET':
         return 'Welcome back, applicant!\n'
     if request.method == 'POST':
-        return "Error: applicantHomepage does not support POST yet\n"
+        jsonObject = request.get_json()
+
+        addShakerResponse = addShaker("test", (1, 2), True)
+
+
+
+
+
+        return "SUCCESS:POSTed!\n"
 
 @app.route('/recruiterHomepage', methods=['GET', 'POST'])
 def recruiterHomepage():
@@ -104,28 +113,23 @@ def recruiterSignup():
         return 'Sign in, recruiter!\n'
     if request.method == 'POST':
         jsonObject = request.get_json()
-        requestEmail = jsonObject['emailAddress']
+        requestEmailAddress = jsonObject['emailAddress']
         requestPassword = jsonObject['password']
         requestFirstName = jsonObject['firstName']
         requestLastName = jsonObject['lastName']
         requestPhoneNumber = jsonObject['phoneNumber']
-        requestSchool = jsonObject['school']
-        requestEduLevel = jsonObject['eduLevel']
-        requestGpa = jsonObject['GPA']
-        requestSkills = jsonObject['skills']
-
+        requestCompany = jsonObject['company']
+        
 
         addRecruiterResponse = addRecruiter(users,
                                             recruiters,
                                             requestFirstName,
-                                            requestLastName, 
-                                            requestPassword,
+                                            requestLastName,
+                                            requestPassword, 
                                             requestEmailAddress,
                                             requestPhoneNumber,
-                                            requestSchool,
-                                            requestEduLevel,
-                                            requestGPA,
-                                            requestSkills)
+                                            requestCompany)
+
         signupStatus = addRecruiterResponse['result']
 
         if signupStatus == "SUCCESS":
