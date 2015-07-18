@@ -16,7 +16,8 @@ public class MainActivity extends Activity {
 
 
     public void joinNowClicked(View view) {
-
+        Intent signUpIntent = new Intent(this, SignupActivity.class);
+        startActivity(signUpIntent);
     }
 
     public void signInClicked(View view) {

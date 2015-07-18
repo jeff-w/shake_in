@@ -5,5 +5,26 @@
     <string name="action_settings"></string>
     <string name="username">E-mail address</string>
     <string name="password">Password</string>
-    <string name="whoareyou">I am a ...</string>
+    <string name="whoareyou">Tell us about yourself</string>
+
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email_address">E-mail address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="school">School</string>
+    <string name="company">Company</string>
+    <string name="education_level">Highest degree you are pursuing</string>
+    <string name="gpa">Grade Point Average</string>
+    <string name="skills_and_projects">Skills and Projects</string>
+    <string name="signup_button">Join now</string>
+
+    <string-array name="education_level_spinner">
+        <item>Bachelor\'s</item>
+        <item>Master\'s</item>
+        <item>Ph.D</item>
+    </string-array>
+    <string name="education_level_prompt">Choose an education level</string>
+    <string name="shake_and_apply">Shake your device to apply!</string>
+    <string name="shake_helper_text">Make sure you are within 10 feet of your recruiter!</string>
+
 </resources>

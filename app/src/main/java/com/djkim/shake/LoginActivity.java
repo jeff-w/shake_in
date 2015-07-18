@@ -11,6 +11,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login_page);
     }
 
+    // TODO: Make a function that checks the credential of the user
     public void signinButtonClicked(View view) {
 
     }
