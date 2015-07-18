@@ -29,8 +29,10 @@ def getNearestShakers(userId, threshold):
 			if elem.userId == userId:
 				currentShaker = elem
 				break
+		if(currentShaker == None):
+			return makeResponse("NEAREST_SHAKER", "FAILURE", "The passed userId is not curretly an active shaker", ""))
 		for elem in shakeActives:
-			if(not elem.isRecruiter() and dist(elem.gpsLoc[0], currentShaker[0], elem.gpsLoc[1], currentShaker[1]) < threshold): 
+			if(elem.userId != currentShaker.userId and not elem.isRecruiter() and dist(elem.gpsLoc[0], currentShaker[0], elem.gpsLoc[1], currentShaker[1]) < threshold): 
 				results.append(elem):
 		sortedResults = sorted(results, key=lambda x: dist(x.gpsLoc[0], currentShaker[0], x.gpsLoc[1], currentShaker[1]))
 		sparseResults = []
